@@ -28,3 +28,10 @@ sp_snowandlight <-
 ggplot(data = sp_snowandlight, mapping = aes(x = totice, y = avsnow)) + 
   geom_point(aes(color= extcoef))+ 
   facet_wrap("yrs")
+
+
+ggplot(data = sp_snowandlight, mapping = aes(x = totice, y = extcoef)) + 
+  geom_point(aes(color= whiteice))
+
+ggplot(data = sp_snowandlight, mapping = aes(x = avsnow, y = extcoef)) + 
+  geom_point(aes(color= whiteice))
