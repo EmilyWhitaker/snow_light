@@ -6,7 +6,7 @@ sp_ice <-
   mutate(
     dpth= cut(depth,
              breaks =  c(-Inf, 3, 8, Inf),
-             labels =  c("epi", "meta", "hypo")
+             labels =  c("epi", "meta", "hypo") 
     )
   )
 
@@ -19,6 +19,10 @@ glimpse(sp_ice)
 
 ggplot(data = sp_ice, mapping = aes(x = avsnow, y = extcoef)) + 
   geom_point(aes(color= dpth))
+
+
+
+  facet_wrap("dpth")
 
 
   
