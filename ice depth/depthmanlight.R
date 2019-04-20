@@ -25,11 +25,12 @@ ggplot(all3, mapping = aes(x = sampledate, y = light))+
 
 lakestats = read_csv('LTERlakes.csv') 
 
-dml = iceDatesCombo %>% dplyr::select(lakeid,iceon,iceoff) %>%
+dml2 = iceDatesCombo %>% dplyr::select(lakeid,iceon,iceoff) %>%
   gather(group,date,iceon:iceoff) %>%
   dplyr::filter(lakeid != 'LR') %>%
-  left_join(all3,by = c('lakeid')) %>%
-  left_join(lakestats,by = c('lakeid'='LakeAbr'))
+  left_join(lakestats,by = c('lakeid'='LakeAbr')) %>%
+  left_join(all3,by = c('lakeid')) 
+  
 
 
 
@@ -43,7 +44,7 @@ ggplot(dml,aes(x = sampledate,  fill = group, y = light)) +
   labs(y = '',x = '') 
 
 
-ggplot(dml,aes(x = sampledate,  fill = group, y = light)) +
+ggplot(dml2,aes(x = sampledate,  fill = group, y = light)) +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b")  +
   scale_y_discrete(expand = c(0.01, 0)) +
   geom_density_ridges(scale = 2,alpha = .5,rel_min_height = 0.01,
@@ -71,4 +72,19 @@ dtf = iceDatesCombo %>% dplyr::select(lakeid,iceon,iceoff) %>%
 basedatadates <-
   basedata %>%
   separate(sampledate, c("year", "month", "day"), sep= "-", extra = "merge")
+
+
+
+
+ggplot(dml,aes(x = sampledate,  fill = light, y = reorder(Characteristic,Latitude,function(x)-min(-x)))) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b")  +
+  geom_density_ridges(scale = 2,alpha = .5,rel_min_height = 0.01,
+                      jittered_points = TRUE,
+                      position = position_points_jitter(width = 0.05, height = 0),
+                      point_shape = '|', point_size = 1) + 
+  scale_fill_discrete(name = '') + 
+  labs(y = '',x = '')+
+  facet_wrap("group")
+
+ggsave('icedates2.png', width = 7, height = 4)
   
