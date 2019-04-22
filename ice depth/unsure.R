@@ -20,7 +20,7 @@ iceDatesS = read_csv('ntl33_v4.csv') %>% # Southern
   dplyr::select(year = year4,lakeid,ice_duration, firstice, lastice)
 
 
-iceDatesCombo = iceDatesN %>% 
+iceDatesCombo2 = iceDatesN %>% 
   mutate(datefirsticeN = lag(datefirstice), firsticeN = lag(firstice)) %>%
   dplyr::mutate(firstIceX = ifelse(firsticeN < 100,0-firsticeN,365 - firsticeN), duration = lastice + firstIceX) %>%
   dplyr::mutate(firstIceX = ifelse(firsticeN < 100,0-firsticeN,365 - firsticeN), duration = lastice + firstIceX) %>%

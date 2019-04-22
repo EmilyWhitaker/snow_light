@@ -47,3 +47,14 @@ ggplot(dml,aes(x = date,  fill = light, y = reorder(Characteristic,Latitude,func
   labs(y = '',x = '')
   
 ggsave('icedates2.png', width = 7, height = 4)
+
+
+
+ggplot(dml3,aes(x = date,  fill = light, y = reorder(Characteristic,Latitude,function(x)-min(-x)))) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b")  +
+  geom_density_ridges(scale = 2,alpha = .5,rel_min_height = 0.01,
+                      jittered_points = TRUE,
+                      position = position_points_jitter(width = 0.05, height = 0),
+                      point_shape = '|', point_size = 1) + 
+  scale_fill_discrete(name = '') + 
+  labs(y = '',x = '')
