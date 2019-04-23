@@ -21,13 +21,14 @@ all3month <-
 
 ggplot(data = all3month, mapping = aes(x = month, y = light)) +
   geom_point(aes(color= lakeid)) +
-  facet_wrap("lakeid")
+  facet_wrap("lakeid")+
+  labs(y = 'light at 0m ',x = 'month')
   
 
 ggplot(data = all3, mapping = aes(x = year, y = light)) +
   geom_point(aes(color= lakeid)) +
-  facet_wrap("lakeid")
-
+  facet_wrap("lakeid")+
+  labs(y = 'light at 0m ',x = '')
 ggplot(all3, mapping = aes(x = sampledate, y = light))+
   geom_point(aes(color= lakeid))
 
