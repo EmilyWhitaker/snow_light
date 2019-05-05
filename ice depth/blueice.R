@@ -6,7 +6,7 @@ library(tidyverse)
 lightatdeck <-
   lightatdeck %>% 
   filter(depth == 0)
-
+ 
 
 #join the blue ice col from blu2 to allsnowandlight?
 

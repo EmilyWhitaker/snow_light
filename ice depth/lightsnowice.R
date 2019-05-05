@@ -7,6 +7,9 @@ decklight2 <-
   decklight %>% 
   filter(depth == 0)
 
+
+#join the blue ice col from blu2 to all snow?
+
 lte = decklight2 %>% 
   right_join(allsnowandlight,by = c('sampledate', 'lakeid'))
 
